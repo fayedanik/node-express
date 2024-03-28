@@ -25,7 +25,13 @@ app.listen(process.env.PORT,() => {
 
 
 app.get('/booklist',(req,res)=> {
-    
+    fs.readFile("./db.json",'utf8',(err,data) => {
+        var parsedData = JSON.parse(data);
+        res.status(200).json({
+            success: true,
+            data: parsedData
+        })
+    });
 });
 
 app.post("/register",(req,res) => {
